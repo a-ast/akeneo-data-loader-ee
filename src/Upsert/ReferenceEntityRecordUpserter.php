@@ -23,6 +23,8 @@ class ReferenceEntityRecordUpserter implements Upsertable
         $code = $data['code'];
         $referenceEntityCode = $data['reference_entity'];
 
+        unset($data['reference_entity']);
+
         $this->api->upsert($referenceEntityCode, $code, $data);
     }
 }
