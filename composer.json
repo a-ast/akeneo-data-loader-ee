@@ -1,0 +1,29 @@
+{
+    "name": "aa/akeneo-data-loader-ee",
+    "description": "Akeneo PIM Enterprise Data Loader",
+    "type": "library",
+    "authors": [
+        {
+          "name": "Andrey Astakhov",
+          "email": "andrey.astakhov@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+          "Aa\\AkeneoEnterpriseDataLoader\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+          "spec\\Aa\\AkeneoEnterpriseDataLoader\\": "spec/"
+        }
+    },
+    "require": {
+        "php": ">=7.1",
+        "akeneo/api-php-client-ee": "^4.0",
+        "php-http/guzzle6-adapter": "^2.0"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^5.1"
+    }
+}
