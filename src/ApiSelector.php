@@ -26,9 +26,9 @@ class ApiSelector extends BaseApiSelector
     public function select(string $apiAlias): Upsertable
     {
         switch ($apiAlias) {
-            case 'reference-entities':
+            case 'reference-entity':
                 return new ReferenceEntityUpserter($this->apiClient->getReferenceEntityApi());
-            case 'reference-entity-records':
+            case 'reference-entity-record':
                 return new ReferenceEntityRecordUpserter($this->apiClient->getReferenceEntityRecordApi());
             default:
                 return parent::select($apiAlias);
