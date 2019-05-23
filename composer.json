@@ -20,6 +20,7 @@
     },
     "require": {
         "php": ">=7.1",
+        "aa/akeneo-data-loader": "@dev",
         "akeneo/api-php-client-ee": "^4.0",
         "php-http/guzzle6-adapter": "^2.0"
     },

@@ -1,4 +1,4 @@
 suites:
     global:
-        namespace: Aa\AkeneoDataLoader
-        psr4_prefix: Aa\AkeneoDataLoader
+        namespace: Aa\AkeneoEnterpriseDataLoader
+        psr4_prefix: Aa\AkeneoEnterpriseDataLoader
