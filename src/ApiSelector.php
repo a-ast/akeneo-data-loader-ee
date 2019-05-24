@@ -26,6 +26,8 @@ class ApiSelector extends BaseApiSelector
     public function select(string $apiAlias): Upsertable
     {
         switch ($apiAlias) {
+            case 'asset':
+                return new StandardUpserter($this->apiClient->getAssetApi());
             case 'reference-entity':
                 return new ReferenceEntityUpserter($this->apiClient->getReferenceEntityApi());
             case 'reference-entity-record':
