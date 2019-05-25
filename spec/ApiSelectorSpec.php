@@ -2,7 +2,7 @@
 
 namespace spec\Aa\AkeneoEnterpriseDataLoader;
 
-use Aa\AkeneoDataLoader\Upsert\Upsertable;
+use Aa\AkeneoDataLoader\Upsert\Uploadable;
 use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityApi;
 use PhpSpec\ObjectBehavior;
@@ -19,6 +19,6 @@ class ApiSelectorSpec extends ObjectBehavior
     {
         $apiClient->getReferenceEntityApi()->willReturn($api);
 
-        $this->select('reference-entities')->shouldHaveType(Upsertable::class);
+        $this->select('reference-entities')->shouldHaveType(Uploadable::class);
     }
 }

@@ -1,12 +1,11 @@
 <?php
 
-namespace Aa\AkeneoEnterpriseDataLoader\Upsert;
+namespace Aa\AkeneoEnterpriseDataLoader\ApiAdapter;
 
-use Aa\AkeneoDataLoader\Upsert\Upsertable;
-use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityApiInterface;
+use Aa\AkeneoDataLoader\ApiAdapter\Uploadable;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
 
-class ReferenceEntityRecordUpserter implements Upsertable
+class ReferenceEntityRecord implements Uploadable
 {
     /**
      * @var ReferenceEntityRecordApiInterface
@@ -18,7 +17,7 @@ class ReferenceEntityRecordUpserter implements Upsertable
         $this->api = $api;
     }
 
-    public function upsert(array $data): iterable
+    public function upload(array $data): iterable
     {
         $responses = [];
 

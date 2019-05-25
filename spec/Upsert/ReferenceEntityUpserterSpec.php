@@ -2,7 +2,7 @@
 
 namespace spec\Aa\AkeneoEnterpriseDataLoader\Upsert;
 
-use Aa\AkeneoDataLoader\Upsert\Upsertable;
+use Aa\AkeneoDataLoader\Upsert\Uploadable;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityApiInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -16,7 +16,7 @@ class ReferenceEntityUpserterSpec extends ObjectBehavior
 
     function it_is_upsertable()
     {
-        $this->shouldHaveType(Upsertable::class);
+        $this->shouldHaveType(Uploadable::class);
     }
 
     function it_upserts(ReferenceEntityApiInterface $api)
@@ -25,6 +25,6 @@ class ReferenceEntityUpserterSpec extends ObjectBehavior
 
         $api->upsert('brand', $data)->shouldBeCalled();
 
-        $this->upsert($data);
+        $this->upload($data);
     }
 }

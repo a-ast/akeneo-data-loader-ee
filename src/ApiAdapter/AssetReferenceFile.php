@@ -1,11 +1,11 @@
 <?php
 
-namespace Aa\AkeneoEnterpriseDataLoader\Upsert;
+namespace Aa\AkeneoEnterpriseDataLoader\ApiAdapter;
 
-use Aa\AkeneoDataLoader\Upsert\Upsertable;
+use Aa\AkeneoDataLoader\ApiAdapter\Uploadable;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 
-class AssetReferenceFileUpserter implements Upsertable
+class AssetReferenceFile implements Uploadable
 {
     /**
      * @var AssetReferenceFileApiInterface
@@ -23,7 +23,7 @@ class AssetReferenceFileUpserter implements Upsertable
         $this->mediaFilePath = $mediaFilePath;
     }
 
-    public function upsert(array $data): iterable
+    public function upload(array $data): iterable
     {
         foreach ($data as $fileData) {
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Aa\AkeneoEnterpriseDataLoader\Upsert;
+namespace Aa\AkeneoEnterpriseDataLoader\ApiAdapter;
 
-use Aa\AkeneoDataLoader\Upsert\Upsertable;
+use Aa\AkeneoDataLoader\ApiAdapter\Uploadable;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetVariationFileApiInterface;
 
-class AssetVariationFileUpserter implements Upsertable
+class AssetVariationFile implements Uploadable
 {
     /**
      * @var AssetVariationFileApiInterface
@@ -23,7 +23,7 @@ class AssetVariationFileUpserter implements Upsertable
         $this->mediaFilePath = $mediaFilePath;
     }
 
-    public function upsert(array $data): iterable
+    public function upload(array $data): iterable
     {
         foreach ($data as $fileData) {
 
@@ -33,7 +33,7 @@ class AssetVariationFileUpserter implements Upsertable
 
             if (isset($fileData['locale'])) {
                 $this->api->uploadForLocalizableAsset($path,  $assetCode, $fileData['channel'], $fileData['locale']);
-                
+
                 continue;
             }
 

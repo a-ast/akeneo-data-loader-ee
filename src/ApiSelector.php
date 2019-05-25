@@ -3,12 +3,12 @@
 namespace Aa\AkeneoEnterpriseDataLoader;
 
 use Aa\AkeneoDataLoader\ApiSelector as BaseApiSelector;
-use Aa\AkeneoDataLoader\Upsert\StandardUpserter;
-use Aa\AkeneoDataLoader\Upsert\Upsertable;
-use Aa\AkeneoEnterpriseDataLoader\Upsert\AssetReferenceFileUpserter;
-use Aa\AkeneoEnterpriseDataLoader\Upsert\AssetVariationFileUpserter;
-use Aa\AkeneoEnterpriseDataLoader\Upsert\ReferenceEntityRecordUpserter;
-use Aa\AkeneoEnterpriseDataLoader\Upsert\ReferenceEntityUpserter;
+use Aa\AkeneoDataLoader\ApiAdapter\StandardAdapter;
+use Aa\AkeneoDataLoader\ApiAdapter\Uploadable;
+use Aa\AkeneoEnterpriseDataLoader\ApiAdapter\AssetReferenceFile;
+use Aa\AkeneoEnterpriseDataLoader\ApiAdapter\AssetVariationFile;
+use Aa\AkeneoEnterpriseDataLoader\ApiAdapter\ReferenceEntityRecord;
+use Aa\AkeneoEnterpriseDataLoader\ApiAdapter\ReferenceEntity;
 use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface;
 
 class ApiSelector extends BaseApiSelector 
@@ -31,19 +31,19 @@ class ApiSelector extends BaseApiSelector
         $this->mediaFilePath = $mediaFilePath;
     }
 
-    public function select(string $apiAlias): Upsertable
+    public function select(string $apiAlias): Uploadable
     {
         switch ($apiAlias) {
             case 'asset':
-                return new StandardUpserter($this->apiClient->getAssetApi());
+                return new StandardAdapter($this->apiClient->getAssetApi());
             case 'asset-reference-file':
-                return new AssetReferenceFileUpserter($this->apiClient->getAssetReferenceFileApi(), $this->mediaFilePath);
+                return new AssetReferenceFile($this->apiClient->getAssetReferenceFileApi(), $this->mediaFilePath);
             case 'asset-variation-file':
-                return new AssetVariationFileUpserter($this->apiClient->getAssetVariationFileApi(), $this->mediaFilePath);
+                return new AssetVariationFile($this->apiClient->getAssetVariationFileApi(), $this->mediaFilePath);
             case 'reference-entity':
-                return new ReferenceEntityUpserter($this->apiClient->getReferenceEntityApi());
+                return new ReferenceEntity($this->apiClient->getReferenceEntityApi());
             case 'reference-entity-record':
-                return new ReferenceEntityRecordUpserter($this->apiClient->getReferenceEntityRecordApi());
+                return new ReferenceEntityRecord($this->apiClient->getReferenceEntityRecordApi());
             default:
                 return parent::select($apiAlias);
         }
