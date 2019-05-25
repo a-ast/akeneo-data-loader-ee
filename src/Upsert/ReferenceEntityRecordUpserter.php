@@ -18,13 +18,16 @@ class ReferenceEntityRecordUpserter implements Upsertable
         $this->api = $api;
     }
 
-    public function upsert(array $data)
+    public function upsert(array $data): iterable
     {
-        $code = $data['code'];
-        $referenceEntityCode = $data['reference_entity'];
+        $responses = [];
 
-        unset($data['reference_entity']);
+        foreach ($data as $referenceEntityCode => $records) {
+            $response = $this->api->upsertList($referenceEntityCode, $records);
 
-        $this->api->upsert($referenceEntityCode, $code, $data);
+            $responses = array_merge($responses, $response);
+        }
+
+        return $responses;
     }
 }

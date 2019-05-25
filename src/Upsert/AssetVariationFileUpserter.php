@@ -23,17 +23,21 @@ class AssetVariationFileUpserter implements Upsertable
         $this->mediaFilePath = $mediaFilePath;
     }
 
-    public function upsert(array $data)
+    public function upsert(array $data): iterable
     {
-        // @todo: add trailing slash to mediaFilePath if missing
-        $path = $this->mediaFilePath.$data['path'];
+        foreach ($data as $fileData) {
 
-        if (isset($data['locale'])) {
-            $this->api->uploadForLocalizableAsset($path, $data['asset'], $data['channel'], $data['locale']);
+            // @todo: add trailing slash to mediaFilePath if missing
+            $path = $this->mediaFilePath.$fileData['path'];
+            $assetCode = $fileData['asset'];
 
-            return;
+            if (isset($fileData['locale'])) {
+                $this->api->uploadForLocalizableAsset($path,  $assetCode, $fileData['channel'], $fileData['locale']);
+                
+                continue;
+            }
+
+            $this->api->uploadForNotLocalizableAsset($path, $assetCode, $fileData['channel']);
         }
-
-        $this->api->uploadForNotLocalizableAsset($path, $data['asset'], $data['channel']);
     }
 }
