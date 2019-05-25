@@ -39,5 +39,7 @@ class AssetReferenceFile implements Uploadable
 
             $this->api->uploadForNotLocalizableAsset($path, $assetCode);
         }
+
+        return [];
     }
 }

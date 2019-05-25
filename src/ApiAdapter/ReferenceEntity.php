@@ -19,9 +19,10 @@ class ReferenceEntity implements Uploadable
 
     public function upload(array $data): iterable
     {
-        foreach ($data as $referenceEntityCode => $entities) {
+        foreach ($data as $entity) {
 
-            $this->api->upsert($referenceEntityCode, $entities);
+            $referenceEntityCode = $entity['code'];
+            $this->api->upsert($referenceEntityCode, $entity);
         }
 
         return [];

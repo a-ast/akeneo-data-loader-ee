@@ -39,5 +39,7 @@ class AssetVariationFile implements Uploadable
 
             $this->api->uploadForNotLocalizableAsset($path, $assetCode, $fileData['channel']);
         }
+
+        return [];
     }
 }
