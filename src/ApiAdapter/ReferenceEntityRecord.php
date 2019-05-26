@@ -13,14 +13,20 @@ class ReferenceEntityRecord implements Uploadable
      */
     private $api;
 
-    public function __construct(ReferenceEntityRecordApiInterface $api)
+    /**
+     * @var int
+     */
+    private $upsertBatchSize;
+
+    public function __construct(ReferenceEntityRecordApiInterface $api, int $upsertBatchSize = 100)
     {
         $this->api = $api;
+        $this->upsertBatchSize = $upsertBatchSize;
     }
 
     public function upload(iterable $data): iterable
     {
-        $batchGenerator = new ChannelingBatchGenerator(100, 'reference_entity');
+        $batchGenerator = new ChannelingBatchGenerator($this->upsertBatchSize, 'reference_entity');
 
         foreach ($batchGenerator->getBatches($data) as $records) {
 

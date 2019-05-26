@@ -15,12 +15,12 @@ class AssetVariationFile implements Uploadable
     /**
      * @var string
      */
-    private $mediaFilePath;
+    private $uploadDir;
 
-    public function __construct(AssetVariationFileApiInterface $api, string $mediaFilePath)
+    public function __construct(AssetVariationFileApiInterface $api, string $uploadDir)
     {
         $this->api = $api;
-        $this->mediaFilePath = $mediaFilePath;
+        $this->uploadDir = $uploadDir;
     }
 
     public function upload(iterable $data): iterable
@@ -28,7 +28,7 @@ class AssetVariationFile implements Uploadable
         foreach ($data as $fileData) {
 
             // @todo: add trailing slash to mediaFilePath if missing
-            $path = $this->mediaFilePath.$fileData['path'];
+            $path = $this->uploadDir.$fileData['path'];
             $assetCode = $fileData['asset'];
 
             if (isset($fileData['locale'])) {
