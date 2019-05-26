@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Aa\AkeneoEnterpriseDataLoader\Upsert;
+namespace spec\Aa\AkeneoEnterpriseDataLoader\ApiAdapter;
 
 use Aa\AkeneoDataLoader\ApiAdapter\Uploadable;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityApiInterface;
@@ -25,6 +25,6 @@ class ReferenceEntitySpec extends ObjectBehavior
 
         $api->upsert('brand', $data)->shouldBeCalled();
 
-        $this->upload($data);
+        $this->upload([$data]);
     }
 }
