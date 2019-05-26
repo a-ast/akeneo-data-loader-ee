@@ -23,7 +23,7 @@ class AssetVariationFile implements Uploadable
         $this->mediaFilePath = $mediaFilePath;
     }
 
-    public function upload(array $data): iterable
+    public function upload(iterable $data): iterable
     {
         foreach ($data as $fileData) {
 
