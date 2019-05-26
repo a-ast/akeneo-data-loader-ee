@@ -17,7 +17,12 @@ class ReferenceEntity implements Uploadable
         $this->api = $api;
     }
 
-    public function upload(array $data): iterable
+    /**
+     * Upload a reference entity.
+     *
+     * Important: batch mode is not yet supported in Akeneo API.
+     */
+    public function upload(iterable $data): iterable
     {
         foreach ($data as $entity) {
 

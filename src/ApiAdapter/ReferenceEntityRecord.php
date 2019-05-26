@@ -3,6 +3,7 @@
 namespace Aa\AkeneoEnterpriseDataLoader\ApiAdapter;
 
 use Aa\AkeneoDataLoader\ApiAdapter\Uploadable;
+use Aa\AkeneoDataLoader\Batch\ChannelingBatchGenerator;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
 
 class ReferenceEntityRecord implements Uploadable
@@ -17,16 +18,21 @@ class ReferenceEntityRecord implements Uploadable
         $this->api = $api;
     }
 
-    public function upload(array $data): iterable
+    public function upload(iterable $data): iterable
     {
-        $responses = [];
+        $batchGenerator = new ChannelingBatchGenerator(100, 'reference_entity');
 
-        foreach ($data as $referenceEntityCode => $records) {
-            $response = $this->api->upsertList($referenceEntityCode, $records);
+        foreach ($batchGenerator->getBatches($data) as $records) {
 
-            $responses = array_merge($responses, $response);
+            $referenceEntity = $records[0]['reference_entity'];
+
+            foreach ($records as &$record) {
+                unset($record['reference_entity']);
+            }
+
+            $response = $this->api->upsertList($referenceEntity, $records);
+
+            yield from $response;
         }
-
-        return $responses;
     }
 }
