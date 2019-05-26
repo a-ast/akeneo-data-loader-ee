@@ -12,12 +12,6 @@ For Community Edition please check the [CE version](https://github.com/a-ast/ake
 * Import from external systems (legacy PIM or regular data providers). 
 * Bulk media file import.
 
-## Use cases
-
-* Load YAML fixtures for testing, local development or performance benchmarking.
-* Import from external systems (legacy PIM or regular data providers). 
-* Bulk media file import.
-
 ### Examples
 
 #### Load form array
