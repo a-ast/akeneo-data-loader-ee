@@ -2,7 +2,7 @@
 
 namespace Aa\AkeneoEnterpriseDataLoader;
 
-use Aa\AkeneoDataLoader\ApiSelector as BaseApiSelector;
+use Aa\AkeneoDataLoader\Api\ApiSelector as BaseApiSelector;
 use Aa\AkeneoDataLoader\ApiAdapter\StandardAdapter;
 use Aa\AkeneoDataLoader\ApiAdapter\Uploadable;
 use Aa\AkeneoEnterpriseDataLoader\ApiAdapter\AssetReferenceFile;
