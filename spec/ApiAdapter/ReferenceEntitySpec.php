@@ -14,17 +14,17 @@ class ReferenceEntitySpec extends ObjectBehavior
         $this->beConstructedWith($api);
     }
 
-    function it_is_upsertable()
+    function it_is_uploadable()
     {
         $this->shouldHaveType(Uploadable::class);
     }
 
-    function it_upserts(ReferenceEntityApiInterface $api)
+    function it_uploads(ReferenceEntityApiInterface $api)
     {
         $data = ['code' => 'brand', 'a' => 1];
 
         $api->upsert('brand', $data)->shouldBeCalled();
 
-        $this->upload([$data]);
+        $this->upload($data);
     }
 }

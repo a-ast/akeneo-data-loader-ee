@@ -4,6 +4,7 @@ namespace Aa\AkeneoEnterpriseDataLoader\ApiAdapter;
 
 use Aa\AkeneoDataLoader\ApiAdapter\ApiAdapterInterface;
 use Aa\AkeneoDataLoader\ApiAdapter\BatchUploadable;
+use Aa\AkeneoDataLoader\Response\ResponseBag;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
 
 class ReferenceEntityRecord implements ApiAdapterInterface, BatchUploadable
@@ -18,7 +19,7 @@ class ReferenceEntityRecord implements ApiAdapterInterface, BatchUploadable
         $this->api = $api;
     }
 
-    public function upload(array $data): iterable
+    public function upload(array $data): ResponseBag
     {
         $referenceEntity = $data[0]['reference_entity'];
 
@@ -28,7 +29,7 @@ class ReferenceEntityRecord implements ApiAdapterInterface, BatchUploadable
 
         $response = $this->api->upsertList($referenceEntity, $data);
 
-        return $response;
+        return ResponseBag::create($response);
     }
 
     public function getBatchGroup(): string

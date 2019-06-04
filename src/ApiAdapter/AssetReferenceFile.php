@@ -4,6 +4,7 @@ namespace Aa\AkeneoEnterpriseDataLoader\ApiAdapter;
 
 use Aa\AkeneoDataLoader\ApiAdapter\ApiAdapterInterface;
 use Aa\AkeneoDataLoader\ApiAdapter\Uploadable;
+use Aa\AkeneoDataLoader\Response\ResponseBag;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 
 class AssetReferenceFile implements ApiAdapterInterface, Uploadable
@@ -24,23 +25,23 @@ class AssetReferenceFile implements ApiAdapterInterface, Uploadable
         $this->uploadDir = $uploadDir;
     }
 
-    public function upload(array $data): iterable
+    public function upload(array $data): ResponseBag
     {
-        foreach ($data as $fileData) {
+        $statusCode = $this->uploadData($data);
 
-            // @todo: add trailing slash to mediaFilePath if missing
-            $path = $this->uploadDir.$fileData['path'];
-            $assetCode = $fileData['asset'];
+        return ResponseBag::createByStatusCodeList([$statusCode]);
+    }
 
-            if (isset($fileData['locale'])) {
-                $this->api->uploadForLocalizableAsset($path,  $assetCode, $fileData['locale']);
+    private function uploadData(array $data): int
+    {
+        // @todo: add trailing slash to mediaFilePath if missing
+        $path = $this->uploadDir.$data['path'];
+        $assetCode = $data['asset'];
 
-                continue;
-            }
-
-            $this->api->uploadForNotLocalizableAsset($path, $assetCode);
+        if (isset($data['locale'])) {
+            return $this->api->uploadForLocalizableAsset($path, $assetCode, $data['locale']);
         }
 
-        return [];
+        return $this->api->uploadForNotLocalizableAsset($path, $assetCode);
     }
 }
