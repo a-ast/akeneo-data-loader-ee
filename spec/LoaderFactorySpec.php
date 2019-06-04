@@ -6,7 +6,6 @@ use Aa\AkeneoDataLoader\Api\Credentials;
 use Aa\AkeneoDataLoader\LoaderInterface;
 use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class LoaderFactorySpec extends ObjectBehavior
 {

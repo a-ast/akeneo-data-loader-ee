@@ -2,10 +2,12 @@
 
 namespace Aa\AkeneoEnterpriseDataLoader\ApiAdapter;
 
+use Aa\AkeneoDataLoader\ApiAdapter\ApiAdapterInterface;
+use Aa\AkeneoDataLoader\ApiAdapter\BatchUploadable;
 use Aa\AkeneoDataLoader\ApiAdapter\Uploadable;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityApiInterface;
 
-class ReferenceEntity implements Uploadable
+class ReferenceEntity implements ApiAdapterInterface, Uploadable
 {
     /**
      * @var ReferenceEntityApiInterface
@@ -22,7 +24,7 @@ class ReferenceEntity implements Uploadable
      *
      * Important: batch mode is not yet supported in Akeneo API.
      */
-    public function upload(iterable $data): iterable
+    public function upload(array $data): iterable
     {
         foreach ($data as $entity) {
 

@@ -2,43 +2,37 @@
 
 namespace Aa\AkeneoEnterpriseDataLoader\ApiAdapter;
 
-use Aa\AkeneoDataLoader\ApiAdapter\Uploadable;
-use Aa\AkeneoDataLoader\Batch\ChannelingBatchGenerator;
+use Aa\AkeneoDataLoader\ApiAdapter\ApiAdapterInterface;
+use Aa\AkeneoDataLoader\ApiAdapter\BatchUploadable;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityRecordApiInterface;
 
-class ReferenceEntityRecord implements Uploadable
+class ReferenceEntityRecord implements ApiAdapterInterface, BatchUploadable
 {
     /**
      * @var ReferenceEntityRecordApiInterface
      */
     private $api;
 
-    /**
-     * @var int
-     */
-    private $upsertBatchSize;
-
-    public function __construct(ReferenceEntityRecordApiInterface $api, int $upsertBatchSize = 100)
+    public function __construct(ReferenceEntityRecordApiInterface $api)
     {
         $this->api = $api;
-        $this->upsertBatchSize = $upsertBatchSize;
     }
 
-    public function upload(iterable $data): iterable
+    public function upload(array $data): iterable
     {
-        $batchGenerator = new ChannelingBatchGenerator($this->upsertBatchSize, 'reference_entity');
+        $referenceEntity = $data[0]['reference_entity'];
 
-        foreach ($batchGenerator->getBatches($data) as $records) {
-
-            $referenceEntity = $records[0]['reference_entity'];
-
-            foreach ($records as &$record) {
-                unset($record['reference_entity']);
-            }
-
-            $response = $this->api->upsertList($referenceEntity, $records);
-
-            yield from $response;
+        foreach ($data as &$record) {
+            unset($record['reference_entity']);
         }
+
+        $response = $this->api->upsertList($referenceEntity, $data);
+
+        return $response;
+    }
+
+    public function getBatchGroup(): string
+    {
+        return 'reference_entity';
     }
 }

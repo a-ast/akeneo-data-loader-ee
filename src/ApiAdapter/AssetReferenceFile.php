@@ -2,10 +2,11 @@
 
 namespace Aa\AkeneoEnterpriseDataLoader\ApiAdapter;
 
+use Aa\AkeneoDataLoader\ApiAdapter\ApiAdapterInterface;
 use Aa\AkeneoDataLoader\ApiAdapter\Uploadable;
 use Akeneo\PimEnterprise\ApiClient\Api\AssetReferenceFileApiInterface;
 
-class AssetReferenceFile implements Uploadable
+class AssetReferenceFile implements ApiAdapterInterface, Uploadable
 {
     /**
      * @var AssetReferenceFileApiInterface
@@ -23,7 +24,7 @@ class AssetReferenceFile implements Uploadable
         $this->uploadDir = $uploadDir;
     }
 
-    public function upload(iterable $data): iterable
+    public function upload(array $data): iterable
     {
         foreach ($data as $fileData) {
 
