@@ -10,12 +10,10 @@ use Aa\AkeneoDataLoader\ApiAdapter\StandardAdapter;
 use Aa\AkeneoDataLoader\Loader;
 use Aa\AkeneoDataLoader\LoaderFactory as BaseLoaderFactory;
 use Aa\AkeneoDataLoader\LoaderInterface;
-use Aa\AkeneoDataLoader\Response\ResponseValidator;
 use Aa\AkeneoEnterpriseDataLoader\ApiAdapter\AssetReferenceFile;
 use Aa\AkeneoEnterpriseDataLoader\ApiAdapter\AssetVariationFile;
 use Aa\AkeneoEnterpriseDataLoader\ApiAdapter\ReferenceEntity;
 use Aa\AkeneoEnterpriseDataLoader\ApiAdapter\ReferenceEntityRecord;
-use Akeneo\Pim\ApiClient\AkeneoPimClientInterface;
 use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientBuilder;
 use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface;
 

@@ -3,7 +3,6 @@
 namespace Aa\AkeneoEnterpriseDataLoader\ApiAdapter;
 
 use Aa\AkeneoDataLoader\ApiAdapter\ApiAdapterInterface;
-use Aa\AkeneoDataLoader\ApiAdapter\BatchUploadable;
 use Aa\AkeneoDataLoader\ApiAdapter\Uploadable;
 use Aa\AkeneoDataLoader\Response\ResponseBag;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityApiInterface;

@@ -5,7 +5,6 @@ namespace spec\Aa\AkeneoEnterpriseDataLoader\ApiAdapter;
 use Aa\AkeneoDataLoader\ApiAdapter\Uploadable;
 use Akeneo\PimEnterprise\ApiClient\Api\ReferenceEntityApiInterface;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class ReferenceEntitySpec extends ObjectBehavior
 {
