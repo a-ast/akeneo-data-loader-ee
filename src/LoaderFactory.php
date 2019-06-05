@@ -40,7 +40,7 @@ class LoaderFactory extends BaseLoaderFactory
         return new Loader($registry, $this->configuration);
     }
 
-    private function createRegistry(AkeneoPimEnterpriseClientInterface $client): RegistryInterface
+    protected function createRegistry(AkeneoPimEnterpriseClientInterface $client): RegistryInterface
     {
         $registry = new Registry();
 
