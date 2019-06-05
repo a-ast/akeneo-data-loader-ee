@@ -35,14 +35,14 @@ class LoaderFactory extends BaseLoaderFactory
     {
         $client = $this->createApiClient($apiCredentials);
 
-        $registry = $this->createRegistry($client);
+        $registry = $this->createEnterpriseRegistry($client);
 
         return new Loader($registry, $this->configuration);
     }
 
-    protected function createRegistry(AkeneoPimEnterpriseClientInterface $client): RegistryInterface
+    protected function createEnterpriseRegistry(AkeneoPimEnterpriseClientInterface $client): RegistryInterface
     {
-        $registry = new Registry();
+        $registry = parent::createRegistry($client);
 
         $uploadDir = $this->configuration->getUploadDir();
 
