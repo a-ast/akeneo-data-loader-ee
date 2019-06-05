@@ -2,16 +2,18 @@
 
 namespace spec\Aa\AkeneoEnterpriseDataLoader;
 
+use Aa\AkeneoDataLoader\Api\Configuration;
 use Aa\AkeneoDataLoader\Api\Credentials;
 use Aa\AkeneoDataLoader\LoaderInterface;
-use Akeneo\PimEnterprise\ApiClient\AkeneoPimEnterpriseClientInterface;
 use PhpSpec\ObjectBehavior;
 
 class LoaderFactorySpec extends ObjectBehavior
 {
-    function it_creates_from_api_client(AkeneoPimEnterpriseClientInterface $client)
+    function let(Configuration $configuration)
     {
-        $this->createByApiClient($client)->shouldHaveType(LoaderInterface::class);
+        $configuration->getUploadDir()->willReturn('/upload');
+
+        $this->beConstructedWith($configuration);
     }
 
     function it_creates_from_credentials(Credentials $credentials)
