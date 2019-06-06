@@ -1,4 +1,0 @@
-suites:
-    global:
-        namespace: Aa\AkeneoEnterpriseDataLoader
-        psr4_prefix: Aa\AkeneoEnterpriseDataLoader
